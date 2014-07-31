@@ -5,14 +5,6 @@ handle="commerce_kickstart"
 identifier=$handle
 name="Commerce Kickstart"
 
-# Machine-specific variables - replace with your own.
-email=""
-account_name=""
-account_pass=""
-db_user=""
-db_pass="
-db_port=""
-
 # Process arguments
 while [ "$1" != "" ]; do
   case $1 in 
@@ -66,11 +58,11 @@ db_url=""
 if [ -z "$db_name" ]
 then
   # Set the identifier as the database name.
-  db_url="--db-url=mysql://$db_user:$db_pass@localhost:$db_port/$identifier"
+  db_url="--db-url=mysql://root:toor@localhost:8889/$identifier"
 fi
 
 # Install the site.
-drush si -y commerce_kickstart $db_url --account-mail="$email" --account-name="$account_name" --account-pass="$account_pass" --site-name="$name" --site-mail="$email" install_configure_form.update_status_module='array(FALSE,FALSE)'
+drush si -y commerce_kickstart $db_url --account-mail='dan@commerceguys.com' --account-name='dan' --account-pass='root' --site-name="$name" --site-mail='dan@commerceguys.com' install_configure_form.update_status_module='array(FALSE,FALSE)'
 
 # Install standard development tools
 drush dl devel admin_menu
